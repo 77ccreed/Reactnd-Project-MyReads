@@ -42,3 +42,5 @@ render(){
   )
 }
 }
+
+export default BooksList;
