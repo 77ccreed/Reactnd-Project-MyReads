@@ -51,4 +51,11 @@ class BooksSearch extends Component{
   }
 }
 
+Search.propTypes = {
+  result: PropTypes.array.isRequired,
+  currentQuery: PropTypes.string.isRequired,
+  onQueryInput: PropTypes.func.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
+}
+
 export default BooksSearch;
