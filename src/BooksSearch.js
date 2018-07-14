@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 class BooksSearch extends Component{
   render() {
@@ -51,7 +52,7 @@ class BooksSearch extends Component{
   }
 }
 
-Search.propTypes = {
+BooksSearch.propTypes = {
   result: PropTypes.array.isRequired,
   currentQuery: PropTypes.string.isRequired,
   onQueryInput: PropTypes.func.isRequired,
