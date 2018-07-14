@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BooksList from './BooksList'
 import BooksSearch from './BooksSearch'
+import { Link, Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -25,15 +26,15 @@ class BooksApp extends React.Component {
             </div>
             <div className="list-books-content">
               <div>
-                <ListBooks
+                <BooksList
                   onChangeShelf={this.shelfChangeHandler}
                   bookList={this.state.currentlyReading}
                   bookShelfTitle="Currently Reading" />
-                <ListBooks
+                <BooksList
                   onChangeShelf={this.shelfChangeHandler}
                   bookList={this.state.wantToRead}
                   bookShelfTitle="Want to Read" />
-                <ListBooks
+                <BooksList
                   onChangeShelf={this.shelfChangeHandler}
                   bookList={this.state.read}
                   bookShelfTitle="Read" />
