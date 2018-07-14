@@ -6,14 +6,89 @@ import BooksSearch from './BooksSearch'
 import { Link, Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
+  shelfChangeHandler = this.shelfChangeHandler.bind(this);
+  searchQueryHandler = this.searchQueryHandler.bind(this);
+
   state = {
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    showSearchPage: false
+    currentlyReading: [],
+    wantToRead: [],
+    read: [],
+    allBooks: [],
+
+    query: '',
+    queryResult: []
+  }
+
+  getBooks() {
+    const currentlyReading = [],
+      wantToRead = [],
+      read = [],
+      allBooks = []
+
+    BooksAPI.getAll()
+      .then(books => {
+        books.forEach(book => {
+          if (book.shelf === 'currentlyReading') {
+            currentlyReading.push(book);
+          }
+          else if (book.shelf === 'wantToRead') {
+            wantToRead.push(book);
+          }
+          else if (book.shelf === 'read') {
+            read.push(book);
+          }
+          // Gather all the books here no matter which shelf they're on
+          allBooks.push(book)
+        })
+        this.setState({ currentlyReading, wantToRead, read, allBooks });
+      })
+      .catch(err => {
+        console.error('Error occurred while fetching books from API', err);
+      })
+  }
+
+  componentDidMount() {
+    this.getBooks()
+  }
+
+  shelfChangeHandler(book, newShelf) {
+    BooksAPI.update(book, newShelf)
+    // Re-render books with updated shelf
+    this.getBooks()
+  }
+
+  timeout;
+  searchQueryHandler(query) {
+    this.setState({ query })
+    if (!query) {
+      return
+    }
+
+    clearTimeout(this.timeout)
+
+    this.timeout = setTimeout(() => {
+      BooksAPI.search(query.trim())
+        .then(searchResults => {
+          searchResults = searchResults.map(searchedBook => {
+            let matchFound = false;
+            for (const book of this.state.allBooks) {
+              if (searchedBook.id === book.id) {
+                matchFound = true;
+                searchedBook.shelf = book.shelf
+                break;
+              }
+            }
+            if (!matchFound)
+              searchedBook.shelf = 'none';
+
+            return searchedBook;
+          })
+
+          this.setState({
+            queryResult: searchResults
+          })
+        })
+    }, 500)
   }
 
   render() {
@@ -48,7 +123,7 @@ class BooksApp extends React.Component {
         </Route>
 
         <Route exact path='/search' render={() => (
-          <Search
+          <BooksSearch
             result={this.state.queryResult}
             currentQuery={this.state.query}
             onQueryInput={this.searchQueryHandler}
