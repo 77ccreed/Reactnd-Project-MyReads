@@ -16,7 +16,7 @@ render(){
             <div className="bookshelf-books">
               <ol className="books-grid">
                 <li>
-                  
+                  <Book />
                 </li>
               </ol>
             </div>
@@ -25,10 +25,9 @@ render(){
             <h2 className="bookshelf-title">Want to Read</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-                <li>
-                  
-                </li>
-             
+                <li>  
+                  <Book />
+                </li>            
               </ol>
             </div>
           </div>
@@ -36,10 +35,9 @@ render(){
             <h2 className="bookshelf-title">Read</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-                <li>
-                  
-                </li>
-          
+                <li>  
+                  <Book />               
+                </li>         
               </ol>
             </div>
           </div>
