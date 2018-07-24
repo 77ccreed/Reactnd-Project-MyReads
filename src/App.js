@@ -1,5 +1,5 @@
 import React from 'react'
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './data/BooksAPI'
 import './css/App.css'
 import SearchPage from './components/SearchPage'
 import MainPage from './components/MainPage'
@@ -7,7 +7,7 @@ import MainPage from './components/MainPage'
 class BooksApp extends React.Component {
 
 state= {
-  books:[];
+  books:[]
 }
 
 componentDidMount(){
@@ -17,12 +17,14 @@ componentDidMount(){
 }
 
   render() {
+    console.log(this.state.books);
     return ( <
       div className = "app" >
       <
-      MainPage />
-      <
-      SearchPage / >
+      MainPage 
+      books={this.state.books}
+      />
+
       <
       /div>
     )
