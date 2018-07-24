@@ -16,12 +16,17 @@ componentDidMount(){
   })
 }
 
+moveShelf=() => {
+
+}
+
   render() {
     return ( <
       div className = "app" >
       <
       MainPage 
       books={this.state.books}
+      moveShelf={this.moveShelf}
       />
 
       <
