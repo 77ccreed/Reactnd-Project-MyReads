@@ -16,8 +16,8 @@ componentDidMount(){
   })
 }
 
-moveShelf=() => {
-
+moveShelf=(book,shelf) => {
+  BooksAPI.update(book,shelf)
 }
 
   render() {
