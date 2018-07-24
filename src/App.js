@@ -5,10 +5,7 @@ import SearchPage from './components/SearchPage'
 import MainPage from './components/MainPage'
 
 class BooksApp extends React.Component {
-  state = {
 
-    showSearchPage: false
-  }
 
   render() {
     return ( <
