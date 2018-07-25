@@ -63,7 +63,7 @@ render(){
                       <Book 
                       book={book}
                         moveShelf={this.props.moveShelf}
-                        currentShelf = "read"
+                        currentShelf="read"
                       />
                     </li>  
                   ))
