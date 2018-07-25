@@ -6,27 +6,32 @@ import MainPage from './components/MainPage'
 
 class BooksApp extends React.Component {
 
-state= {
-  books:[]
-}
+  state = {
+    books: []
+  }
 
-componentDidMount(){
-  BooksAPI.getAll().then((books) =>{
-    this.setState({books})
-  })
-}
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({
+        books:books
+      })
+    })
+  }
 
-moveShelf=(book,shelf) => {
-  BooksAPI.update(book,shelf)
-}
+  moveShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf);
+  }
 
   render() {
     return ( <
       div className = "app" >
       <
-      MainPage 
-      books={this.state.books}
-      moveShelf={this.moveShelf}
+      MainPage books = {
+        this.state.books
+      }
+      moveShelf = {
+        this.moveShelf
+      }
       />
 
       <
