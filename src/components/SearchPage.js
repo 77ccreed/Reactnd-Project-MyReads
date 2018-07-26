@@ -2,7 +2,7 @@ import React, {
   Component
 } from 'react'
 import * as BooksAPI from './../data/BooksAPI'
-/*import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 */
 import Book from './Book'
@@ -22,9 +22,14 @@ class SearchPage extends Component {
   updateSearchedBooks = (query) => {
     if (query){
       BooksAPI.search(query).then((searchedBooks) => {
-        this.setState({
-          searchedBooks: searchedBooks
-        })
+        if(searchedBooks.error){
+          searchedBooks: []
+        }
+      else {
+          this.setState({
+            searchedBooks: searchedBooks
+          })
+      }
       })
 }else {
       this.setState({
@@ -77,6 +82,8 @@ class SearchPage extends Component {
           Book book = {
             searchedBook
           }
+                      moveShelf={
+                        this.props.moveShelf}
           /> <
           /li>
         ))
