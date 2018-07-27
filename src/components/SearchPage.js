@@ -3,7 +3,6 @@ import React, {
 } from 'react'
 import * as BooksAPI from './../data/BooksAPI'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import Book from './Book'
 class SearchPage extends Component {
   state = {
@@ -98,9 +97,6 @@ this.props.books.map(book => (
               )
             }
           }
-          
-Book.propTypes = {
-                  book: PropTypes.string.isRequired
-              }
+
               
 export default SearchPage;
