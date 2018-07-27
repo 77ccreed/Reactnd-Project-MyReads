@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Book from './Book'
 import { Link } from 'react-router-dom'
-/*import PropTypes from "prop-types"*/
+import PropTypes from "prop-types"
 
 class MainPage extends Component{
 render(){
@@ -87,6 +87,8 @@ render(){
 }
 }
 
-
+MainPage.propTypes = {
+  books: PropTypes.array.isRequired
+}
 
 export default MainPage;

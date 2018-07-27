@@ -95,10 +95,12 @@ this.props.books.map(book => (
       /ol> <
       /div> <
       /div>
-    )
-  }
-}
-
-
-
+              )
+            }
+          }
+          
+Book.propTypes = {
+                  book: PropTypes.string.isRequired
+              }
+              
 export default SearchPage;
