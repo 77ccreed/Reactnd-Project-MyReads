@@ -49,6 +49,7 @@ class BooksApp extends React.Component {
         render={() => (
           <SearchPage
             moveShelf={this.moveShelf}
+            books={this.props.books}
           />
         )}
       />
