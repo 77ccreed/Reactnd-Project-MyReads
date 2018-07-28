@@ -2,7 +2,9 @@ import React, {
   Component
 } from 'react'
 import * as BooksAPI from './../data/BooksAPI'
-import { Link } from 'react-router-dom'
+import {
+  Link
+} from 'react-router-dom'
 import Book from './Book'
 class SearchPage extends Component {
   state = {
@@ -18,23 +20,23 @@ class SearchPage extends Component {
   }
 
   updateSearchedBooks = (query) => {
-    if (query){
+    if (query) {
       BooksAPI.search(query).then((searchedBooks) => {
-        if(searchedBooks.error){
+        if (searchedBooks.error) {
           searchedBooks: []
         }
-      else {
+        else {
           this.setState({
             searchedBooks: searchedBooks
           })
-      }
+        }
       })
-}else {
+    } else {
       this.setState({
         searchedBooks: []
       })
-}
-}
+    }
+  }
 
   render() {
     return ( <
@@ -43,12 +45,11 @@ class SearchPage extends Component {
       <
       div className = "search-books-bar" >
 
-      <Link 
-      className = "close-search"
-    to="/"
-      >
-       Close 
-       < /Link>
+      <
+      Link className = "close-search"
+      to = "/" >
+      Close <
+      /Link>
 
       <
       div className = "search-books-input-wrapper" > {
@@ -65,38 +66,46 @@ class SearchPage extends Component {
       />
 
       <
-      /div> <
-      /div>
+      /div> < /
+      div >
 
       <
       div className = "search-books-results" >
       <
       ol className = "books-grid" > {
-        this.state.searchedBooks.map(searchedBook => { 
-          let shelf= "none";
+        this.state.searchedBooks.map(searchedBook => {
+          let shelf = "none";
 
-this.props.books.map(book => (
-  book.id === searchedBook.id ?
-  shelf = book.shelf :
-   ""
-));
+          this.props.books.map(book => (
+            book.id === searchedBook.id ?
+            shelf = book.shelf :
+            ""
+          ));
 
-          return (
-            <li key={ searchedBook.id } >
-                  <Book 
-                  book={searchedBook}
-                  moveShelf={this.props.moveShelf}
-                  currentShelf={ shelf }
-                  /> </li>
-                  )
+          return ( <
+            li key = {
+              searchedBook.id
+            } >
+            <
+            Book book = {
+              searchedBook
+            }
+            moveShelf = {
+              this.props.moveShelf
+            }
+            currentShelf = {
+              shelf
+            }
+            /> </li >
+          )
         })
       } <
-      /ol> <
-      /div> <
+      /ol> < /
+      div > <
       /div>
-              )
-            }
-          }
+    )
+  }
+}
 
-              
+
 export default SearchPage;
